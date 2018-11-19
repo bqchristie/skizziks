@@ -1,6 +1,6 @@
 <template>
     <div class="check-box">
-      <label class="container">{{label}}{{id}}
+      <label class="container">{{label}}
         <input type="checkbox" @click="onCheck(id)">
         <span class="checkmark"></span>
       </label>

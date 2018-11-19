@@ -4,14 +4,7 @@
       <i class="material-icons" @click="menuOpen=!menuOpen">menu</i>
       <a href="#" @click="logout()">Logout</a>
     </header>
-    <div id="menu" :class="{'is-open': menuOpen}" @click="menuOpen=!menuOpen">
-      <a href="">Products</a>
-      <a href="">Categories</a>
-      <a href="">Profile</a>
-      <a href="">Signout</a>
-      <div class="screen" :class="{'is-open': menuOpen}">
-      </div>
-    </div>
+    <side-menu :menuOpen="menuOpen"></side-menu>
     <div id="app-content">
     <router-view/>
     </div>
@@ -21,6 +14,7 @@
 <script>
 import Vue from 'vue'
 import axios from 'axios'
+import sideMenu from './components/common/side-menu'
 
 const axiosConfig = {
   baseurl: 'http://localhost/api',
@@ -32,6 +26,7 @@ Vue.prototype.$axios = axios.create(axiosConfig)
 
 export default {
   name: 'App',
+  components: {sideMenu},
   data: function () {
     return {
       menuOpen: false

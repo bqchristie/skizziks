@@ -26,13 +26,8 @@ const mutations = {
     state.masterList.push(obj)
   },
   REMOVE_FROM_MASTER_LIST (state, payload) {
-    debugger
     state.masterList = _.remove(state.masterList, function (product) {
-      var ret = product.id === payload
-      if (ret) {
-        console.log('removing' + product.name)
-      }
-      return product.id === payload
+      return product.id !== payload
     })
   }
 }
