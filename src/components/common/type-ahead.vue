@@ -1,7 +1,9 @@
 <template>
    <div class="type-ahead">
      <i @click="searchText = ''">X</i>
-     <input type="text" v-model="searchText"
+     <input type="text"
+            v-model="searchText"
+            :class="{'hasResults':filteredData.length > 0}"
             @keyup="filterData()"
             @keyup.down="setResultsFocusNext()"
             @keyup.up="setResultsFocusPrev()"
@@ -65,6 +67,7 @@ export default {
         this.selectItem(this.searchText)
       }
       this.searchText = ''
+      this.filteredData = []
     },
     setResultsFocusNext () {
       if ((this.resultsIdx + 1) < this.filteredData.length) {
@@ -107,6 +110,10 @@ export default {
     border: 1px solid #ccc;
     text-indent: 5px;
     outline:none;
+    &.hasResults {
+      border-radius: 4px 4px 0px 0px !important;
+      border-bottom: none;
+    }
   }
   .type-ahead-results {
     position: fixed;
@@ -114,7 +121,11 @@ export default {
     z-index: 999;
     ul {
       top: 24px;
-      background-color: #eeeeee;
+      border: 1px solid #e2e2e2;
+      background-color: white;
+      -webkit-box-shadow: 5px 5px 8px -1px #B0B0B0;
+      box-shadow: 5px 5px 8px -1px #B0B0B0;
+      margin-right: 16px;
       li {
         display: flex;
         flex-direction: row;

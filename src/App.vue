@@ -100,6 +100,8 @@ export default {
         width: 100%;
         justify-content: space-between;
         align-items: center;
+        -webkit-box-shadow: 5px 5px 8px -1px #B0B0B0;
+        box-shadow: 0px 3px 8px 0px #B0B0B0;
         i {
           padding-left: 10px;
           padding-right: 10px;
