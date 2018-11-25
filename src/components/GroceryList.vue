@@ -14,6 +14,7 @@
 
 // import Vue from 'vue'
 import {mapGetters, mapActions} from 'vuex'
+import _ from 'lodash'
 import typeAhead from './common/type-ahead'
 import checkBox from './common/check-box'
 

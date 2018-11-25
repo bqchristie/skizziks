@@ -22,7 +22,14 @@ const mutations = {
     })
   },
   ADD_TO_MASTER_LIST (state, payload) {
-    var obj = {id: payload}
+    let obj = {}
+    if (_.isObject(payload)) {
+      state.products.push(payload)
+      obj.id = payload.id
+    }
+    else {
+      obj.id = payload
+    }
     state.masterList.push(obj)
   },
   REMOVE_FROM_MASTER_LIST (state, payload) {
@@ -33,7 +40,7 @@ const mutations = {
 }
 
 const actions = {
-  initData({commit}) {
+  initData ({commit}) {
     axios.get('http://localhost:3030/api/product').then((response) => {
       let data = [
         response.data,
@@ -42,16 +49,24 @@ const actions = {
       commit('INIT_DATA', data)
     })
   },
-  addProduct({commit}, product) {
+  addProduct ({commit}, product) {
     axios.post('http://localhost:3030/api/product', product).then((response) => {
       commit('ADD_PRODUCT', product)
     })
   },
-  removeProduct({commit}, product) {
+  removeProduct ({commit}, product) {
     commit('REMOVE_PRODUCT', product)
   },
-  addToMasterList({commit}, id) {
-    commit('ADD_TO_MASTER_LIST', id)
+  addToMasterList ({commit}, id) {
+    if (_.isInteger(id)) {
+      commit('ADD_TO_MASTER_LIST', id)
+    } else {
+      let newProduct = {name: id}
+      axios.post('http://localhost:3030/api/product', newProduct).then((response) => {
+        newProduct.id = response.data[0].insertId
+        commit('ADD_TO_MASTER_LIST', newProduct)
+      })
+    }
   },
   removeFromMasterList({commit}, id) {
     commit('REMOVE_FROM_MASTER_LIST', id)

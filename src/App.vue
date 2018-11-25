@@ -2,7 +2,8 @@
   <div id="app">
     <header>
       <i class="material-icons" @click="menuOpen=!menuOpen">menu</i>
-      <a href="#" @click="logout()">Logout</a>
+      <i class="material-icons">edit</i>
+      <!--<a href="#" @click="logout()">Logout</a>-->
     </header>
     <side-menu :menuOpen="menuOpen"></side-menu>
     <div id="app-content">
@@ -101,6 +102,7 @@ export default {
         align-items: center;
         i {
           padding-left: 10px;
+          padding-right: 10px;
           color: white;
         }
         a {

@@ -57,10 +57,14 @@ export default {
       if (!_.isUndefined(idx)) {
         this.resultsIdx = idx
       }
-      this.selectedItem = this.filteredData[this.resultsIdx]
-      this.searchText = this.selectedItem.name
-      this.searchText = '';
-      this.selectItem(this.selectedItem.id)
+      if (this.resultsIdx > -1) {
+        this.selectedItem = this.filteredData[this.resultsIdx]
+        this.searchText = this.selectedItem.name
+        this.selectItem(this.selectedItem.id)
+      } else {
+        this.selectItem(this.searchText)
+      }
+      this.searchText = ''
     },
     setResultsFocusNext () {
       if ((this.resultsIdx + 1) < this.filteredData.length) {
