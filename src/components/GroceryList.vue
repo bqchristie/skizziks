@@ -79,6 +79,7 @@ export default {
           border: 1px solid #e2e2e2;
           -webkit-box-shadow: 5px 5px 8px -1px #B0B0B0;
           box-shadow: 5px 5px 8px -1px #B0B0B0;
+          text-transform: capitalize;
         }
       }
     }

@@ -92,7 +92,7 @@ export default {
       }
       header {
         height: 40px;
-        background-color: #6481b8;
+        background-color: darken(#6481b8,40%);
         position: fixed;
         top: 0;
         display: flex;
