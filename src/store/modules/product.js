@@ -41,7 +41,7 @@ const mutations = {
 
 const actions = {
   initData ({commit}) {
-    axios.get('http://localhost:3030/api/product').then((response) => {
+    axios.get(process.env.API_PATH + '/product').then((response) => {
       let data = [
         response.data,
         [{id: 1}, {id: 2}]
@@ -50,7 +50,7 @@ const actions = {
     })
   },
   addProduct ({commit}, product) {
-    axios.post('http://localhost:3030/api/product', product).then((response) => {
+    axios.post(process.env.API_PATH + '/product', product).then((response) => {
       commit('ADD_PRODUCT', product)
     })
   },
@@ -62,7 +62,7 @@ const actions = {
       commit('ADD_TO_MASTER_LIST', id)
     } else {
       let newProduct = {name: id}
-      axios.post('http://localhost:3030/api/product', newProduct).then((response) => {
+      axios.post(process.env.API_PATH + '/product', newProduct).then((response) => {
         newProduct.id = response.data[0].insertId
         commit('ADD_TO_MASTER_LIST', newProduct)
       })
