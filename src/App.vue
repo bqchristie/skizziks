@@ -63,7 +63,7 @@ export default {
         /*opacity: 0.9;*/
         padding-top: 40px;
         transition: 0.5s;
-        z-index: 999;
+        z-index: 10000;
         &.is-open {
           margin-left: 0px;
         }
@@ -85,7 +85,7 @@ export default {
             position: fixed;
             height: 100%;
             width:100%;
-            background-color: aquamarine;
+            //background-color: aquamarine;
             top:0;
           }
         }

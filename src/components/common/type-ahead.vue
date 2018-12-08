@@ -51,7 +51,7 @@ export default {
         this.filteredData = []
       } else {
         this.filteredData = this.listData.filter(item => {
-          return item.name.includes(this.searchText)
+          return item.name.toLowerCase().includes(this.searchText.toLowerCase())
         })
       }
     },
