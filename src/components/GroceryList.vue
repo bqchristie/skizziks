@@ -4,8 +4,8 @@
     <div class="empty-message" v-if="includedProducts.length === 0">
       <h3>Add some products to the list!</h3>
     </div>
-    <ul v-for="product in includedProducts" :key="product.id">
-        <li>{{product.name}}<check-box :id="product.id" :on-check="removeItem"></check-box></li>
+    <ul>
+        <li v-for="product in includedProducts" :key="product.id">{{product.name}}<check-box :id="product.id" :on-check="removeItem"></check-box></li>
     </ul>
   </div>
 </template>
@@ -58,6 +58,7 @@ export default {
 <style lang="scss" scoped>
     .grocery-list {
       .empty-message {
+        margin-top: 60px;
         text-align: center;
         padding-top: 40px;
         h3 {
@@ -66,20 +67,20 @@ export default {
         }
       }
       ul {
-        margin-top: 10px;
+        margin-top: 60px;
         width:100%;
         li {
           height:35px;
-          padding: 5px 5px 5px 5px;
+          padding: 2px 5px 2px 5px;
           display: flex;
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
           background-color: white;
           border: 1px solid #e2e2e2;
-          -webkit-box-shadow: 5px 5px 8px -1px #B0B0B0;
-          box-shadow: 5px 5px 8px -1px #B0B0B0;
           text-transform: capitalize;
+          border-radius: 4px 4px 4px 4px;
+          margin-bottom: 3px;
         }
       }
     }

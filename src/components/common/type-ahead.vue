@@ -9,7 +9,7 @@
             @keyup.up="setResultsFocusPrev()"
             @keyup.enter="setItem()"
             placeholder="Enter text..">
-     <div class="type-ahead-results" v-if="!this.selectedItem">
+     <div class="type-ahead-results" v-if="!this.selectedItem && filteredData.length > 0">
        <ul>
          <li v-for="(item, index) in filteredData"
              :class="{'isSelected': index === resultsIdx}"
@@ -86,56 +86,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.type-ahead {
+  @import "../../css/common";
+  @import "../../css/type-ahead";
 
-  position: relative;
-
-  i {
-    color: #ccc;
-    position: absolute;
-    top: 10px;
-    right:10px;
-    height:100%;
-    font-size: 20px;
-    &:hover {
-      color: darken(#ccc, 20%);
-    }
-  }
-
-  input {
-    width: 100%;
-    height: 35px;
-    font-size: 16px;
-    border-radius: 4px 4px 4px 4px;
-    border: 1px solid #ccc;
-    text-indent: 5px;
-    outline:none;
-    &.hasResults {
-      border-radius: 4px 4px 0px 0px !important;
-      border-bottom: none;
-    }
-  }
-  .type-ahead-results {
-    position: fixed;
-    width: 100%;
-    z-index: 999;
-    ul {
-      top: 24px;
-      border: 1px solid #e2e2e2;
-      background-color: white;
-      -webkit-box-shadow: 5px 5px 8px -1px #B0B0B0;
-      box-shadow: 5px 5px 8px -1px #B0B0B0;
-      margin-right: 16px;
-      li {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 5px 5px 5px 5px;
-        &.isSelected {
-          background-color: aqua;
-        }
-      }
-    }
-  }
-}
 </style>

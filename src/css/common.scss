@@ -1,0 +1,86 @@
+//$main-color : #b8ff03;
+@import 'colors';
+
+body {
+  // Needs latest Compass, add '@import "compass"' to your scss
+  // Permalink - use to edit and share this gradient:
+  // http://colorzilla.com/gradient-editor/$main-color+0,b8ff03+23,a8e000+93
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/$main-color+0,b8ff03+23,a8e000+93 */
+  background: $main-color; /* Old browsers */
+  background: -moz-linear-gradient(left, $main-color 0%, $main-color 23%, darken($main-color,10%)); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, $main-color 0%,$main-color 23%,darken($main-color,10%)); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, $main-color 0%,$main-color 23%,darken($main-color,10%)); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$main-color', endColorstr='#a8e000',GradientType=1 ); /* IE6-9 */
+
+  height: 100%;
+  #app {
+    dislay: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    #menu {
+      position: fixed;
+      top: 0;
+      height: 100%;
+      color: white;
+      margin-left: -50%;
+      width: 50%;
+      background-color: darken(#6481b8,40%);
+      /*opacity: 0.9;*/
+      padding-top: 40px;
+      transition: 0.5s;
+      z-index: 10000;
+      &.is-open {
+        margin-left: 0px;
+      }
+      a {
+        display: block;
+        color: white;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .screen {
+        display: none;
+        opacity: 0.5;
+        &.is-open {
+          z-index: 100;
+          display: block;
+          position: fixed;
+          height: 100%;
+          width:100%;
+          //background-color: aquamarine;
+          top:0;
+        }
+      }
+    }
+    header {
+      height: 40px;
+      background-color: #1f1f1f;
+      position: fixed;
+      top: 0;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      i {
+        padding-left: 10px;
+        padding-right: 10px;
+        color: white;
+      }
+      a {
+        padding-right: 10px;
+        text-decoration: none;
+        color: white;
+      }
+    }
+    #app-content {
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}

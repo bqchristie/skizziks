@@ -48,8 +48,8 @@ export default {
    position: absolute;
    top: 0;
    left: 0;
-   height: 25px;
-   width: 25px;
+   height: 20px;
+   width: 20px;
    background-color: #f9f9f9;
    border: 1px solid #ccc;
    border-radius: 4px 4px 4px 4px;
