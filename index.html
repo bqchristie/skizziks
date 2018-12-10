@@ -11,25 +11,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-    <script>
-      var conf = confirm("Fullscreen mode?");
-      var docelem = document.documentElement;
-
-      if (conf == true) {
-        if (docelem.requestFullscreen) {
-          docelem.requestFullscreen();
-        }
-        else if (docelem.mozRequestFullScreen) {
-          docelem.mozRequestFullScreen();
-        }
-        else if (docelem.webkitRequestFullscreen) {
-          docelem.webkitRequestFullscreen();
-        }
-        else if (docelem.msRequestFullscreen) {
-          docelem.msRequestFullscreen();
-        }
-      }
-    </script>
   </head>
   <body>
     <div id="app" class="app-container"></div>
