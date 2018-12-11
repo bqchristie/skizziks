@@ -1,6 +1,15 @@
 <template>
   <div>
     <div id="menu" :class="{'is-open': menuOpen}" @click="menuOpen=!menuOpen">
+      <img src="../../assets/logo_alternate_layout_white.png" alt="">
+      <div>
+        <div class="menu-title">
+          <a href="">Plan & Shop</a>
+        </div>
+        <p>Manage you master product list. Add new items, correct spelling,
+          conolidate duplicates.
+        </p>
+      </div>
       <div>
         <div class="menu-title">
           <a href="">Products</a>

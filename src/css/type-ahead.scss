@@ -40,7 +40,7 @@
     background-color: darken($main-color, 10%);
     border: 1px solid darken($main-color, 8%);
     color:white;
-    font-weight: 700;
+    font-weight: 500;
     text-indent: 5px;
     outline:none;
     &.hasResults {
@@ -50,7 +50,7 @@
   }
   .type-ahead-results {
     position: fixed;
-    width: 100%;
+    width: 80%;
     z-index: 999;
     ul {
       top: 24px;
@@ -67,7 +67,7 @@
         text-transform: capitalize;
         padding-bottom: 2px;
         &.isSelected {
-          background-color: yellow;
+          background-color: lighten(yellow,40%);
         }
       }
     }

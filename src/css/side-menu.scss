@@ -11,6 +11,11 @@
   padding-top: 40px;
   transition: 0.5s;
   z-index: 10000;
+  img {
+    padding-left: 20px;
+    padding-bottom: 20px;
+    width:50%;
+  }
   &.is-open {
     margin-left: 0px;
   }
@@ -34,9 +39,9 @@
   p {
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 12px;
     font-size: 0.8em;
-    color: $light-text;
+    color: lighten(green, 65%);
     text-align: justify;
   }
 
