@@ -1,4 +1,5 @@
 //$main-color : #ff730b;
 $main-color : #6481b8;
+$light-text: lighten($main-color,45%);
 $black:  darken($main-color, 30%);
 $white: #ffffff;

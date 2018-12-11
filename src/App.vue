@@ -45,6 +45,5 @@ export default {
 </script>
 
 <style  lang="scss">
-  /*@import "css/common";*/
   @import "css/root";
 </style>
