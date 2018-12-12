@@ -22,8 +22,8 @@ export default {
 function login () {
   Vue.ls.set('loggedInUser', '12897shiahsoiha9621')
   this.$router.replace('/')
-
 }
+
 </script>
 
 <style type="scss" scoped>
