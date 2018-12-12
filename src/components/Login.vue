@@ -11,18 +11,29 @@
 
 <script>
 import Vue from 'vue'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'Login',
   methods: {
-    login
+    ...mapActions(['login']),
+  },
+  computed: {
+    ...mapGetters(['authentication']),
+  },
+  watch : {
+    authentication: function(authentication) {
+      if(authentication.auth) {
+        Vue.ls.set('loggedInUser', newval)
+        this.$router.replace('/')
+      }
+      else {
+        console.log('Fail...');
+      }
+    }
   }
 }
 
-function login () {
-  Vue.ls.set('loggedInUser', '12897shiahsoiha9621')
-  this.$router.replace('/')
-}
 </script>
 
 <style type="scss" scoped>
