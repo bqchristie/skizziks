@@ -32,6 +32,7 @@ export default {
    -moz-user-select: none;
    -ms-user-select: none;
    user-select: none;
+   z-index:750;
  }
 
  /* Hide the browser's default checkbox */

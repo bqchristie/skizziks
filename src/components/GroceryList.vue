@@ -2,6 +2,7 @@
   <div class="grocery-list">
     <type-ahead :list-data="products" :select-item="addItem"></type-ahead>
     <div class="empty-message" v-if="includedProducts.length === 0">
+      <img src="../assets/logo_white.png"/>
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
@@ -60,6 +61,9 @@ export default {
         margin-top: 60px;
         text-align: center;
         padding-top: 40px;
+        img {
+          width:50%;
+        }
         h3 {
           color: lighten(#6481b8, 10%);
           font-weight: bolder;
