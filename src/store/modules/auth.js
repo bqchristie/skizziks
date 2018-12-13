@@ -7,11 +7,11 @@ const state = {
 const mutations = {
 
   LOGIN (state, payload) {
-    state.authentication = payload;
+    state.authentication = payload
   },
-  LOGOUT(state) {
-    state.authentication = null;
-  },
+  LOGOUT (state) {
+    state.authentication = null
+  }
 }
 
 const actions = {
@@ -20,7 +20,7 @@ const actions = {
       commit('LOGIN', response.data)
     })
   },
-  logout ({commit},) {
+  logout ({commit}) {
     commit('LOGOUT', null)
   }
 }

@@ -40,12 +40,12 @@
 </template>
 
 <script>
-  export default {
-    name: 'side-menu',
-    props: {
-      menuOpen: Boolean
-    }
+export default {
+  name: 'side-menu',
+  props: {
+    menuOpen: Boolean
   }
+}
 </script>
 
 <style lang="scss" scoped>

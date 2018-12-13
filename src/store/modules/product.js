@@ -26,8 +26,7 @@ const mutations = {
     if (_.isObject(payload)) {
       state.products.push(payload)
       obj.id = payload.id
-    }
-    else {
+    } else {
       obj.id = payload
     }
     state.masterList.push(obj)
@@ -68,7 +67,7 @@ const actions = {
       })
     }
   },
-  removeFromMasterList({commit}, id) {
+  removeFromMasterList ({commit}, id) {
     commit('REMOVE_FROM_MASTER_LIST', id)
   }
 }

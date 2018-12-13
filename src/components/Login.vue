@@ -16,19 +16,18 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'Login',
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['login'])
   },
   computed: {
-    ...mapGetters(['authentication']),
+    ...mapGetters(['authentication'])
   },
-  watch : {
-    authentication: function(authentication) {
-      if(authentication.auth) {
-        Vue.ls.set('loggedInUser', newval)
+  watch: {
+    authentication: function (authentication) {
+      if (authentication.auth) {
+        Vue.ls.set('loggedInUser', authentication)
         this.$router.replace('/')
-      }
-      else {
-        console.log('Fail...');
+      } else {
+        console.log('Fail...')
       }
     }
   }
