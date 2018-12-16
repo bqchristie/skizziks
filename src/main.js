@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store/store'
 import VueLocalStorage from 'vue-localstorage'
+import axios from 'axios/index'
 
 Vue.config.productionTip = false
 Vue.use(VueLocalStorage, {
@@ -14,9 +15,13 @@ Vue.use(VueLocalStorage, {
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  const currentUser = Vue.ls.get('loggedInUser')
+  const token = Vue.ls.get('token')
 
-  if (requiresAuth && !currentUser) {
+  if (token) {
+    axios.defaults.headers.common['x-access-token'] = token
+  }
+
+  if (requiresAuth && !token) {
     next('/login')
   } else {
     next()

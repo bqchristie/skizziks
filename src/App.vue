@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header>
+    <header v-if="showHeader">
       <i class="material-icons" @click="menuOpen=!menuOpen">menu</i>
       <span>Groceries</span>
       <i class="material-icons">add</i>
@@ -29,15 +29,24 @@ Vue.prototype.$axios = axios.create(axiosConfig)
 export default {
   name: 'App',
   components: {sideMenu},
+  created: function () {
+    this.showHeader = this.$route.path !== '/login'
+  },
   data: function () {
     return {
-      menuOpen: false
+      menuOpen: false,
+      showHeader: false
     }
   },
   methods: {
     logout: function () {
       Vue.ls.remove('loggedInUser')
       this.$router.replace('/login')
+    }
+  },
+  watch: {
+    $route (to, from) {
+      this.showHeader = to.path !== '/login'
     }
   }
 }
