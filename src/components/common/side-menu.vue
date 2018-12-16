@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="menu" :class="{'is-open': menuOpen}" @click="menuOpen=!menuOpen">
+    <div id="menu" :class="{'is-open': isOpen}" @click="isOpen=!isOpen">
       <img src="../../assets/logo_alternate_layout_white.png" alt="">
       <div>
         <div class="menu-title">
@@ -44,6 +44,11 @@ export default {
   name: 'side-menu',
   props: {
     menuOpen: Boolean
+  },
+  data: () => {
+    return {
+      isOpen: this.menuOpen
+    }
   }
 }
 </script>
