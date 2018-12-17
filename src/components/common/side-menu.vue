@@ -2,7 +2,7 @@
   <div>
     <div id="menu" :class="{'is-open': isOpen}" @click="isOpen=!isOpen">
       <img src="../../assets/logo_alternate_layout_white.png" alt="">
-      <div>
+      <div class="menu-item">
         <div class="menu-title">
           <a href="">Plan & Shop</a>
         </div>
@@ -10,7 +10,7 @@
           conolidate duplicates.
         </p>
       </div>
-      <div>
+      <div class="menu-item">
         <div class="menu-title">
           <a href="">Products</a>
         </div>
@@ -18,20 +18,24 @@
           conolidate duplicates.
         </p>
       </div>
-      <div>
+      <div class="menu-item">
         <div class="menu-title">
           <a href="">Categories</a>
         </div>
         <p>Oragnize products into categories so that you can naigate
           the shopping aisles optimally.</p>
-        <div class="menu-title">
-          <a href="">Profile</a>
+        <div class="menu-item">
+          <div class="menu-title">
+            <a href="">Profile</a>
+          </div>
+          <p>Upload a photo change your password.</p>
         </div>
-        <p>Upload a photo change your password.</p>
-        <div class="menu-title">
-          <a href="">Signout</a>
+        <div class="menu-item">
+          <div class="menu-title">
+            <a href="">Signout</a>
+          </div>
+          <p>Goobye!</p>
         </div>
-        <p>Goobye!</p>
       </div>
       <div class="screen" :class="{'is-open': menuOpen}">
       </div>
