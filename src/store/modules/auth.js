@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../../router'
 import Vue from 'vue'
 
 const state = {
@@ -15,10 +16,9 @@ const mutations = {
     }
   },
   LOGOUT (state) {
-    console.log('in the logout')
     Vue.ls.remove('token')
     state.authentication = null
-    this.$router.replace('/login')
+    router.push('/login')
   }
 }
 

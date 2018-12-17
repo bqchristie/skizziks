@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="menu" :class="{'is-open': isOpen}" @click="isOpen=!isOpen">
+    <div id="menu" :class="{'is-open': sideMenuOpen}" v-on:click.self="hideMenu()">
       <img src="../../assets/logo_alternate_layout_white.png" alt="">
       <div class="menu-item">
         <div class="menu-title">
@@ -32,18 +32,19 @@
         </div>
         <div class="menu-item">
           <div class="menu-title">
-            <a href="">Signout</a>
+            <a href="#" v-on:click.self="signout()">Signout</a>
           </div>
           <p>Goobye!</p>
         </div>
-      </div>
-      <div class="screen" :class="{'is-open': menuOpen}">
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   name: 'side-menu',
   props: {
@@ -53,6 +54,22 @@ export default {
     return {
       isOpen: this.menuOpen
     }
+  },
+  methods: {
+    ...mapActions(['toggleSideMenu', 'logout']),
+    hideMenu: function () {
+      // console.log('side menu open' + this.sideMenuOpen);
+      if (this.sideMenuOpen) {
+        this.toggleSideMenu()
+      }
+    },
+    signout: function () {
+      this.logout()
+      this.hideMenu()
+    }
+  },
+  computed: {
+    ...mapGetters(['sideMenuOpen'])
   }
 }
 </script>

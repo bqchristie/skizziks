@@ -1,12 +1,11 @@
 <template>
   <div id="app">
     <header v-if="showHeader">
-      <i class="material-icons" @click="menuOpen=!menuOpen">menu</i>
+      <i class="material-icons" @click="toggleSideMenu">menu</i>
       <span>Groceries</span>
       <i class="material-icons">add</i>
-      <!--<a href="#" @click="logout()">Logout</a>-->
     </header>
-    <side-menu :menuOpen="menuOpen"></side-menu>
+    <side-menu></side-menu>
     <div id="app-content">
     <router-view/>
     </div>
@@ -14,7 +13,7 @@
 </template>
 
 <script>
-
+import {mapActions} from 'vuex'
 import sideMenu from './components/common/side-menu'
 
 export default {
@@ -28,6 +27,9 @@ export default {
       menuOpen: false,
       showHeader: false
     }
+  },
+  methods: {
+    ...mapActions(['toggleSideMenu'])
   },
   watch: {
     $route (to, from) {
