@@ -14,17 +14,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
+
 import sideMenu from './components/common/side-menu'
-
-const axiosConfig = {
-  baseurl: 'http://localhost/api',
-  timeout: 30000
-}
-
-// Setting up Axios on Vue Instance, for use via this.$axios
-Vue.prototype.$axios = axios.create(axiosConfig)
 
 export default {
   name: 'App',
@@ -36,12 +27,6 @@ export default {
     return {
       menuOpen: false,
       showHeader: false
-    }
-  },
-  methods: {
-    logout: function () {
-      Vue.ls.remove('loggedInUser')
-      this.$router.replace('/login')
     }
   },
   watch: {
