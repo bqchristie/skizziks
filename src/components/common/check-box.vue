@@ -19,6 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "../../css/common";
  .check-box {
  /* Customize the label (the container) */
  .container {

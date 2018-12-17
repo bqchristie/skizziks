@@ -41,9 +41,13 @@ export default {
 
 </script>
 
-<style type="scss" scoped>
-  form {
-    display: flex;
-    flex-direction: column;
+<style lang="scss" scoped>
+  @import "../css/common";
+  h1 {
+    font-size: 12px;
   }
+  h1 {
+    font-size: 12px;
+  }
+
 </style>

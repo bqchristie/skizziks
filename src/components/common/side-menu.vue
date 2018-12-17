@@ -75,6 +75,70 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../../css/common.scss";
-  @import "../../css/side-menu.scss";
+  @import "../../css/common";
+  #menu {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    color: white;
+    margin-left: -75%;
+    width: 75%;
+    background-color: green;
+    /*opacity: 0.9;*/
+    padding-top: 40px;
+    transition: 0.5s;
+    z-index: 10000;
+    img {
+      padding-left: 20px;
+      padding-bottom: 20px;
+      width:50%;
+    }
+    &.is-open {
+      margin-left: 0px;
+    }
+    .menu-title {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: 20px;
+    }
+    a {
+      display: block;
+      color: white;
+      padding-bottom: 3px;
+      padding-left: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    p {
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 12px;
+      font-size: 0.8em;
+      color: lighten(green, 65%);
+      text-align: justify;
+    }
+
+    div.go {
+      text-align: right;
+      padding-right: 20px;
+      padding-bottom: 20px;
+    }
+
+    .screen {
+      display: none;
+      opacity: 0.5;
+      &.is-open {
+        z-index: 1000;
+        display: block;
+        position: fixed;
+        height: 100%;
+        width:100%;
+        //background-color: aquamarine;
+        top:0;
+      }
+    }
+  }
 </style>
