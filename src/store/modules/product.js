@@ -39,7 +39,8 @@ const mutations = {
 }
 
 const actions = {
-  initData ({commit}) {
+  initData ({commit, dispatch}) {
+    dispatch('startSpinner')
     axios.get(process.env.API_PATH + '/product').then((response) => {
       let data = [
         response.data,
@@ -56,7 +57,8 @@ const actions = {
   removeProduct ({commit}, product) {
     commit('REMOVE_PRODUCT', product)
   },
-  addToMasterList ({commit}, id) {
+  addToMasterList ({commit, dispatch}, id) {
+    dispatch('startSpinner')
     if (_.isInteger(id)) {
       commit('ADD_TO_MASTER_LIST', id)
     } else {

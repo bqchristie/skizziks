@@ -29,12 +29,17 @@ export default {
   },
   created () {
     console.log('in the created method...')
-    this.$store.dispatch('initData')
+    this.$store.dispatch('initData').then(() => {
+      console.log('done loading data')
+      this.$store.dispatch('stopSpinner')
+    })
   },
   methods: {
     ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList ']),
     addItem: function (productId) {
-      this.$store.dispatch('addToMasterList', productId)
+      this.$store.dispatch('addToMasterList', productId).then( () => {
+        this.$store.dispatch('stopSpinner')
+      })
     },
     removeItem: function (productId) {
       this.$store.dispatch('removeFromMasterList', productId)

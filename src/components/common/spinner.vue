@@ -1,30 +1,73 @@
 <template>
-    <div id="loader">
-        <div class="lds-ripple">
-            <div></div>
-            <div></div>
-        </div>
+  <div id="loader" v-bind:class="{'active':loading}">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
     </div>
+  </div>
 </template>
 <script>
-    export default {
-        name: 'spinner'
-    }
+import {mapGetters} from 'vuex'
+
+export default {
+  name: 'spinner',
+  computed: {
+    ...mapGetters(['loading'])
+  }
+}
 </script>
 <style lang="scss">
-    @import "css/common";
+  @import "../../css/common";
 
-    body {
-        // Needs latest Compass, add '@import "compass"' to your scss
-        // Permalink - use to edit and share this gradient:
-        // http://colorzilla.com/gradient-editor/$main-color+0,b8ff03+23,a8e000+93
-        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/$main-color+0,b8ff03+23,a8e000+93 */
-        background: $main-color; /* Old browsers */
-        background: -moz-linear-gradient(left, $main-color 0%, $main-color 23%, darken($main-color, 10%)); /* FF3.6-15 */
-        background: -webkit-linear-gradient(left, $main-color 0%, $main-color 23%, darken($main-color, 10%)); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to right, $main-color 0%, $main-color 23%, darken($main-color, 10%)); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$main-color', endColorstr='#a8e000', GradientType=1); /* IE6-9 */
+  .lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
 
-        height: 100%;
+  .lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+
+  @keyframes lds-ripple {
+    0% {
+      top: 28px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      opacity: 1;
     }
+    100% {
+      top: -1px;
+      left: -1px;
+      width: 58px;
+      height: 58px;
+      opacity: 0;
+    }
+  }
+
+  #loader {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000000;
+    opacity: 0.7;
+    z-index: $z-idx-spinner;
+    padding-top: 200px;
+    padding-left: calc(50vw - 30px);
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
 </style>

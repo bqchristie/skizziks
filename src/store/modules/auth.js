@@ -23,7 +23,8 @@ const mutations = {
 }
 
 const actions = {
-  login ({commit}, creds) {
+  login ({commit, dispatch}, creds) {
+    dispatch('startSpinner')
     axios.post(process.env.AUTH_PATH + '/login', creds).then((response) => {
       commit('LOGIN', response.data)
     })

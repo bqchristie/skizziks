@@ -5,6 +5,7 @@
       <span>Groceries</span>
       <i class="material-icons">add</i>
     </header>
+    <spinner/>
     <side-menu></side-menu>
     <div id="app-content">
     <router-view/>
@@ -15,10 +16,11 @@
 <script>
 import {mapActions} from 'vuex'
 import sideMenu from './components/common/side-menu'
+import Spinner from './components/common/spinner';
 
 export default {
   name: 'App',
-  components: {sideMenu},
+  components: {Spinner, sideMenu},
   created: function () {
     this.showHeader = this.$route.path !== '/login'
   },
