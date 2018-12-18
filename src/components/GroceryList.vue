@@ -34,7 +34,6 @@ export default {
   methods: {
     ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList ']),
     addItem: function (productId) {
-      debugger
       this.$store.dispatch('addToMasterList', productId)
     },
     removeItem: function (productId) {
