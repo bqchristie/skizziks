@@ -2,7 +2,6 @@
   <div id="login">
 
         <img src="../assets/logo_white.png" alt="">
-        {{creds}}
         <form>
           <div class="input-container">
           <i class="material-icons">mail_outline</i>

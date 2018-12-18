@@ -18,6 +18,8 @@ const mutations = {
   },
   ADD_PRODUCT (state, payload) {
     state.products.push(payload)
+    state.productMap[payload.id] = payload
+    state.masterList.push({product_id: payload.id})
   },
   REMOVE_PRODUCT (state, payload) {
     state.masterList = _.filter(state.masterList, function (product) {
@@ -79,7 +81,7 @@ const actions = {
       let newProduct = {name: id}
       axios.post(process.env.API_PATH + '/product', newProduct).then((response) => {
         newProduct.id = response.data[0].insertId
-        commit('ADD_TO_MASTER_LIST', newProduct)
+        commit('ADD_PRODUCT', newProduct)
       })
     }
   },

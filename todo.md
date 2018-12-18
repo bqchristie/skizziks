@@ -1,12 +1,21 @@
-## Login
-Register
-Forgot password
+## doing
 
-## User
-On user creates add a MASTER list
-Load master list on init
-Update master list
+1. Save the list  - Grocery List
 
-## Grocery List
-Sort list by category
-Save the list
+## backlog
+
+### Login
+1. Register
+2. Forgot password
+
+### User
+1. On user creates add a MASTER list
+1. Load master list on init
+1. Update master list
+
+### Grocery List
+1. Sort list by category
+
+### Data loader
+1. set user 1 email to admin@fuud.com and assign admin role
+ 	
