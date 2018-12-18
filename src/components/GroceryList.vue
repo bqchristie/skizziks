@@ -37,9 +37,7 @@ export default {
   methods: {
     ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList ']),
     addItem: function (productId) {
-      this.$store.dispatch('addToMasterList', productId).then( () => {
-        this.$store.dispatch('stopSpinner')
-      })
+      this.$store.dispatch('addToMasterList', productId)
     },
     removeItem: function (productId) {
       this.$store.dispatch('removeFromMasterList', productId)
@@ -55,6 +53,13 @@ export default {
       let includedItems = this.masterList.map(product => product.id)
       return this.products.filter(product => includedItems.includes(product.id))
     }
+  },
+  updated: function () {
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been re-rendered
+      this.$store.dispatch('stopSpinner');
+    })
   }
 }
 </script>

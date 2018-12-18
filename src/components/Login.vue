@@ -2,14 +2,15 @@
   <div id="login">
 
         <img src="../assets/logo_white.png" alt="">
+        {{creds}}
         <form>
           <div class="input-container">
           <i class="material-icons">mail_outline</i>
-          <input id="email" type="email" name="email" title="email" placeholder="Email" autofocus>
+          <input v-model="creds.email" id="email" type="email" name="email" title="email" placeholder="Email" autofocus>
           </div>
           <div class="input-container">
           <i class="material-icons">lock_outline</i>
-          <input id="password" type="password" name="password" title="password" placeholder="Password">
+          <input v-model="creds.password" id="password" type="password" name="password" title="password" placeholder="Password">
           <button type="submit" class="btn btn-green" @click="login(creds)">Login</button>
           </div>
         </form>

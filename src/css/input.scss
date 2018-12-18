@@ -5,11 +5,12 @@ input {
   height: 35px;
   font-size: 16px;
   border-radius: 4px 4px 4px 4px;
-  color:white;
+  border: 1px solid $main-color;
   font-weight: 500;
   text-indent: 5px;
   outline:none;
   :-webkit-autofill {
     background-color: $white;
+    color: #000000;
   }
 }
