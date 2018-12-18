@@ -1,8 +1,10 @@
 import _ from 'lodash'
 import axios from 'axios'
+import Vue from 'vue'
 
 const state = {
   products: [],
+  productMap: [],
   masterList: [],
   lists: []
 }
@@ -11,13 +13,14 @@ const mutations = {
 
   INIT_DATA (state, payload) {
     state.products = payload[0]
+    state.productMap = _.keyBy(payload[0], 'id')
     state.masterList = payload[1]
   },
   ADD_PRODUCT (state, payload) {
     state.products.push(payload)
   },
   REMOVE_PRODUCT (state, payload) {
-    state.products = _.filter(state.products, function (product) {
+    state.masterList = _.filter(state.masterList, function (product) {
       return product.id !== payload.id
     })
   },
@@ -27,13 +30,13 @@ const mutations = {
       state.products.push(payload)
       obj.id = payload.id
     } else {
-      obj.id = payload
+      obj.product_id = payload
     }
     state.masterList.push(obj)
   },
   REMOVE_FROM_MASTER_LIST (state, payload) {
-    state.masterList = _.remove(state.masterList, function (product) {
-      return product.id !== payload
+    state.masterList = _.remove(state.masterList, function (item) {
+      return item.product_id !== payload
     })
   }
 }
@@ -41,13 +44,24 @@ const mutations = {
 const actions = {
   initData ({commit, dispatch}) {
     dispatch('startSpinner')
-    axios.get(process.env.API_PATH + '/product').then((response) => {
-      let data = [
-        response.data,
-        [{id: 1}, {id: 2}]
-      ]
-      commit('INIT_DATA', data)
-    })
+    let userId = Vue.ls.get('user')
+    let data = []
+
+    // get user then
+    // get master list
+    axios.get(process.env.API_PATH + '/product')
+      .then(response => {
+        data.push(response.data);
+        axios.get(process.env.API_PATH + '/user/' + userId)
+          .then(response => {
+            let masterListId = response.data.lists[0].id
+            return axios.get(process.env.API_PATH + '/list/' + masterListId)
+          })
+          .then(response => {
+            data.push(response.data.listItems)
+            commit('INIT_DATA', data)
+          })
+      })
   },
   addProduct ({commit}, product) {
     axios.post(process.env.API_PATH + '/product', product).then((response) => {
@@ -76,6 +90,7 @@ const actions = {
 
 const getters = {
   products: state => state.products,
+  productMap: state => state.productMap,
   masterList: state => state.masterList
 }
 

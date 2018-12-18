@@ -1,12 +1,12 @@
 <template>
   <div class="grocery-list">
     <type-ahead :list-data="products" :select-item="addItem"></type-ahead>
-    <div class="empty-message" v-if="includedProducts.length === 0">
+    <div class="empty-message" v-if="masterList.length === 0">
       <img src="../assets/logo_white.png"/>
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
-        <li v-for="product in includedProducts" :key="product.id">{{product.name}}<check-box :id="product.id" :on-check="removeItem"></check-box></li>
+        <li v-for="item in masterList" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.product_id" :on-check="removeItem"></check-box></li>
     </ul>
   </div>
 </template>
@@ -28,15 +28,13 @@ export default {
     }
   },
   created () {
-    console.log('in the created method...')
-    this.$store.dispatch('initData').then(() => {
-      console.log('done loading data')
-      this.$store.dispatch('stopSpinner')
-    })
+    this.$store.dispatch('startSpinner')
+    this.$store.dispatch('initData')
   },
   methods: {
     ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList ']),
     addItem: function (productId) {
+      debugger
       this.$store.dispatch('addToMasterList', productId)
     },
     removeItem: function (productId) {
@@ -47,18 +45,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['products', 'masterList']),
-
-    includedProducts: function () {
-      let includedItems = this.masterList.map(product => product.id)
-      return this.products.filter(product => includedItems.includes(product.id))
-    }
+    ...mapGetters(['products', 'productMap', 'masterList'])
   },
   updated: function () {
     this.$nextTick(function () {
       // Code that will run only after the
       // entire view has been re-rendered
-      this.$store.dispatch('stopSpinner');
+      this.$store.dispatch('stopSpinner')
     })
   }
 }

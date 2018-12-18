@@ -12,11 +12,13 @@ const mutations = {
     state.authentication = payload
     if (payload.auth) {
       Vue.ls.set('token', payload.token)
+      Vue.ls.set('user', payload.user)
       axios.defaults.headers.common['x-access-token'] = payload.token
     }
   },
   LOGOUT (state) {
     Vue.ls.remove('token')
+    Vue.ls.remove('user')
     state.authentication = null
     router.push('/login')
   }

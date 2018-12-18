@@ -16,7 +16,7 @@
 <script>
 import {mapActions} from 'vuex'
 import sideMenu from './components/common/side-menu'
-import Spinner from './components/common/spinner';
+import Spinner from './components/common/spinner'
 
 export default {
   name: 'App',
