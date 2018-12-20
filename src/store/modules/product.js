@@ -22,8 +22,11 @@ const mutations = {
     state.masterList.push({product_id: payload.id})
   },
   REMOVE_PRODUCT (state, payload) {
-    state.masterList = _.filter(state.masterList, function (product) {
-      return product.id !== payload.id
+    debugger
+    axios.delete(process.env.API_PATH + '/listitem', payload).then(response => {
+      state.masterList = _.filter(state.masterList, function (product) {
+        return product.id !== payload.id
+      })
     })
   },
   ADD_TO_MASTER_LIST (state, payload) {
@@ -36,9 +39,10 @@ const mutations = {
     }
     state.masterList.push(obj)
   },
-  REMOVE_FROM_MASTER_LIST (state, payload) {
+  REMOVE_FROM_MASTER_LIST (state, listItemId) {
+    console.log('deleting list item ' + listItemId)
     state.masterList = _.remove(state.masterList, function (item) {
-      return item.product_id !== payload
+      return item.id !== listItemId
     })
   }
 }
@@ -86,7 +90,9 @@ const actions = {
     }
   },
   removeFromMasterList ({commit}, id) {
-    commit('REMOVE_FROM_MASTER_LIST', id)
+    axios.delete(process.env.API_PATH + '/list-item/' + id).then((response) => {
+      commit('REMOVE_FROM_MASTER_LIST', id)
+    })
   }
 }
 

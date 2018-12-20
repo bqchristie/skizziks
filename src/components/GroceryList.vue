@@ -6,7 +6,7 @@
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
-        <li v-for="item in masterList" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.product_id" :on-check="removeItem"></check-box></li>
+        <li v-for="item in masterList" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.id" :on-check="removeItem"></check-box></li>
     </ul>
   </div>
 </template>
@@ -48,8 +48,6 @@ export default {
   },
   updated: function () {
     this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been re-rendered
       this.$store.dispatch('stopSpinner')
     })
   }

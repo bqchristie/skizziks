@@ -1,6 +1,9 @@
 ## doing
+0. favcion
 
 1. Save the list  - Grocery List
+  1. check for dirty list
+  2. denounce save so it doesn't fire a million times
 
 ## backlog
 
@@ -14,8 +17,10 @@
 1. Update master list
 
 ### Grocery List
-1. Sort list by category
+1. Sort list by category **
+2. ability to change category
 
-### Data loader
-1. set user 1 email to admin@fuud.com and assign admin role
- 	
+### DB Tools
+1. loader - set user 1 email to admin@fuud.com and assign admin role
+2. loader - Create mechanism where you dump current data
+3. add not null constraint - start with product name
