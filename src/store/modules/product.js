@@ -19,12 +19,12 @@ const mutations = {
   ADD_PRODUCT (state, payload) {
     state.products.push(payload)
     state.productMap[payload.id] = payload
-    state.masterList.push({product_id: payload.id})
+    state.masterList.listItems.push({product_id: payload.id})
   },
   REMOVE_PRODUCT (state, payload) {
     debugger
     axios.delete(process.env.API_PATH + '/listitem', payload).then(response => {
-      state.masterList = _.filter(state.masterList, function (product) {
+      state.masterList.listItems = _.filter(state.masterList, function (product) {
         return product.id !== payload.id
       })
     })
@@ -37,11 +37,11 @@ const mutations = {
     } else {
       obj.product_id = payload
     }
-    state.masterList.push(obj)
+    state.masterList.listItems.push(obj)
   },
   REMOVE_FROM_MASTER_LIST (state, listItemId) {
     console.log('deleting list item ' + listItemId)
-    state.masterList = _.remove(state.masterList, function (item) {
+    state.masterList.listItems = _.remove(state.masterList.listItems, function (item) {
       return item.id !== listItemId
     })
   }
@@ -64,7 +64,7 @@ const actions = {
             return axios.get(process.env.API_PATH + '/list/' + masterListId)
           })
           .then(response => {
-            data.push(response.data.listItems)
+            data.push(response.data)
             commit('INIT_DATA', data)
           })
       })
@@ -80,7 +80,15 @@ const actions = {
   addToMasterList ({commit, dispatch}, id) {
     dispatch('startSpinner')
     if (_.isInteger(id)) {
+      let listItem = {
+        list: state.masterList,
+        product: {id: id}
+      }
       commit('ADD_TO_MASTER_LIST', id)
+      axios.post(process.env.API_PATH + '/list-item', listItem).then((response) => {
+        listItem.id = response.data[0].insertId
+        commit('ADD_PRODUCT', id)
+      })
     } else {
       let newProduct = {name: id}
       axios.post(process.env.API_PATH + '/product', newProduct).then((response) => {

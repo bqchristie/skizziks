@@ -1,12 +1,12 @@
 <template>
   <div class="grocery-list">
     <type-ahead :list-data="products" :select-item="addItem"></type-ahead>
-    <div class="empty-message" v-if="masterList.length === 0">
+    <div class="empty-message" v-if="masterList.listItems && masterList.listItems.length === 0">
       <img src="../assets/logo_white.png"/>
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
-        <li v-for="item in masterList" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.id" :on-check="removeItem"></check-box></li>
+        <li v-for="item in masterList.listItems" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.id" :on-check="removeItem"></check-box></li>
     </ul>
   </div>
 </template>

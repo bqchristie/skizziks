@@ -1,9 +1,6 @@
 ## doing
-0. favcion
 
-1. Save the list  - Grocery List
-  1. check for dirty list
-  2. denounce save so it doesn't fire a million times
+1. Save new item to list
 
 ## backlog
 
@@ -24,3 +21,8 @@
 1. loader - set user 1 email to admin@fuud.com and assign admin role
 2. loader - Create mechanism where you dump current data
 3. add not null constraint - start with product name
+
+### Misc
+0. favcion
+
+
