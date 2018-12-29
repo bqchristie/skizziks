@@ -6,7 +6,12 @@
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
-        <li v-for="item in masterList.listItems" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.id" :on-check="removeItem"></check-box></li>
+        <li class="cat-1" v-for="item in masterList.listItems"  :key="item.id">
+
+            {{productMap[item.product_id].name}}
+             !!{{productMap[item.product_id].product_category_id}}!!
+            <check-box :id="item.id" :on-check="removeItem"></check-box>
+        </li>
     </ul>
   </div>
 </template>

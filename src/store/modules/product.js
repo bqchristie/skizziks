@@ -6,7 +6,8 @@ const state = {
   products: [],
   productMap: [],
   masterList: [],
-  lists: []
+  lists: [],
+  productCategories: []
 }
 
 const mutations = {
@@ -107,7 +108,8 @@ const actions = {
 const getters = {
   products: state => state.products,
   productMap: state => state.productMap,
-  masterList: state => state.masterList
+  masterList: state => state.masterList,
+  productCategories: state => state.productCategories
 }
 
 const productModule = {
