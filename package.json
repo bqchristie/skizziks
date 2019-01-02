@@ -2,7 +2,7 @@
   "name": "groceries",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Bruce Christie <bruce.christie@mobilelive.ca>",
+  "author": "Bruce Christie <bqchristie@gmail.ca>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

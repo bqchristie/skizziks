@@ -6,7 +6,7 @@
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
-        <li class="cat-1" v-for="item in sortedMasterList"  :key="item.id">
+        <li class="cat-1" v-for="item in sortedMasterList" :key="item.id">
             {{productMap[item.product_id].product_category_id}}
             {{productMap[item.product_id].name}}
             <check-box :id="item.id" :on-check="removeItem"></check-box>
@@ -37,7 +37,7 @@ export default {
     this.$store.dispatch('initData')
   },
   methods: {
-    ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList ']),
+    ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList']),
     addItem: function (productId) {
       this.$store.dispatch('addToMasterList', productId)
     },
@@ -51,9 +51,9 @@ export default {
   computed: {
     ...mapGetters(['products', 'productMap', 'productCategoryMap', 'masterList']),
     sortedMasterList: function () {
-      let producMap = this.productMap;
+      let productMap = this.productMap
       return this.masterList ? _.sortBy(this.masterList.listItems, function (item) {
-        return [producMap[item.product_id].product_category_id, producMap[item.product_id].name]
+        return [productMap[item.product_id].product_category_id, productMap[item.product_id].name]
       }) : []
     }
   },
@@ -84,6 +84,7 @@ export default {
       ul {
         margin-top: 60px;
         width:100%;
+        padding-left: 0px;
         li {
           height:35px;
           padding: 2px 5px 2px 5px;
