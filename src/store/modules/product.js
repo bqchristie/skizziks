@@ -6,7 +6,9 @@ const state = {
   products: [],
   productMap: [],
   masterList: [],
-  lists: []
+  lists: [],
+  productCategories: [],
+  productCategoryMap: []
 }
 
 const mutations = {
@@ -15,6 +17,8 @@ const mutations = {
     state.products = payload[0]
     state.productMap = _.keyBy(payload[0], 'id')
     state.masterList = payload[1]
+    state.productCategories = payload[2]
+    state.productCategoryMap = _.keyBy(payload[2], 'id')
   },
   ADD_PRODUCT (state, payload) {
     state.products.push(payload)
@@ -56,11 +60,15 @@ const actions = {
     // get master list
     axios.get(process.env.API_PATH + '/product')
       .then(response => {
-        data.push(response.data);
+        data.push(response.data)
         axios.get(process.env.API_PATH + '/user/' + userId)
           .then(response => {
             let masterListId = response.data.lists[0].id
             return axios.get(process.env.API_PATH + '/list/' + masterListId)
+          })
+          .then(response => {
+            data.push(response.data)
+            return axios.get(process.env.API_PATH + '/product-category/')
           })
           .then(response => {
             data.push(response.data)
@@ -81,7 +89,7 @@ const actions = {
     let listItem = {list: state.masterList}
 
     if (_.isInteger(id)) {
-      listItem.product = {id: id};
+      listItem.product = {id: id}
       axios.post(process.env.API_PATH + '/list-item', listItem).then((response) => {
         listItem.id = response.data[0].insertId
         commit('ADD_TO_MASTER_LIST', id)
@@ -107,7 +115,9 @@ const actions = {
 const getters = {
   products: state => state.products,
   productMap: state => state.productMap,
-  masterList: state => state.masterList
+  masterList: state => state.masterList,
+  productCategories: state => state.productCategories,
+  productCategoryMap: state => state.productCategoryMap
 }
 
 const productModule = {

@@ -6,7 +6,11 @@
       <h3>Add some products to the list!</h3>
     </div>
     <ul>
-        <li v-for="item in masterList.listItems" :key="item.id">{{productMap[item.product_id].name}}<check-box :id="item.id" :on-check="removeItem"></check-box></li>
+        <li class="cat-1" v-for="item in sortedMasterList"  :key="item.id">
+            {{productMap[item.product_id].product_category_id}}
+            {{productMap[item.product_id].name}}
+            <check-box :id="item.id" :on-check="removeItem"></check-box>
+        </li>
     </ul>
   </div>
 </template>
@@ -17,6 +21,7 @@
 import {mapGetters, mapActions} from 'vuex'
 import typeAhead from './common/type-ahead'
 import checkBox from './common/check-box'
+import _ from 'lodash'
 
 export default {
   name: 'MyGroceries',
@@ -44,7 +49,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['products', 'productMap', 'masterList'])
+    ...mapGetters(['products', 'productMap', 'productCategoryMap', 'masterList']),
+    sortedMasterList: function () {
+      let producMap = this.productMap;
+      return this.masterList ? _.sortBy(this.masterList.listItems, function (item) {
+        return [producMap[item.product_id].product_category_id, producMap[item.product_id].name]
+      }) : []
+    }
   },
   updated: function () {
     this.$nextTick(function () {
