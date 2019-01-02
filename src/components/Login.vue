@@ -24,7 +24,7 @@ export default {
   data () {
     return {
       creds: {
-        email: 'Rubye4@yahoo.com',
+        email: 'admin@admin.com',
         password: 'password'
       }
     }
