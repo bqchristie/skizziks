@@ -3,7 +3,8 @@
     <type-ahead :list-data="products" :select-item="addItem"></type-ahead>
     <div class="empty-message" v-if="masterList.listItems && masterList.listItems.length === 0">
       <img src="../assets/logo_white.png"/>
-      <h3>Add some products to the list!</h3>
+      <h3 :on-click="huh">Add some products to the list!</h3>
+      <button :on-click="huh"></button>
     </div>
     <ul>
         <li class="cat-1" v-for="item in sortedMasterList"  :key="item.id">
@@ -37,7 +38,7 @@ export default {
     this.$store.dispatch('initData')
   },
   methods: {
-    ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList ']),
+    ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList','toggleFlyUp']),
     addItem: function (productId) {
       this.$store.dispatch('addToMasterList', productId)
     },
@@ -46,14 +47,17 @@ export default {
     },
     markDone: function (id) {
       console.log(id)
+    },
+    huh: function () {
+      console.log('huh')
     }
   },
   computed: {
     ...mapGetters(['products', 'productMap', 'productCategoryMap', 'masterList']),
     sortedMasterList: function () {
-      let producMap = this.productMap
+      let productMap = this.productMap
       return this.masterList ? _.sortBy(this.masterList.listItems, function (item) {
-        return [producMap[item.product_id].product_category_id, producMap[item.product_id].name]
+        return [productMap[item.product_id].product_category_id, productMap[item.product_id].name]
       }) : []
     }
   },
@@ -84,6 +88,7 @@ export default {
       ul {
         margin-top: 60px;
         width:100%;
+        padding-left: 0px;
         li {
           height:35px;
           padding: 2px 5px 2px 5px;
