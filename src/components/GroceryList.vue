@@ -51,7 +51,7 @@ export default {
   computed: {
     ...mapGetters(['products', 'productMap', 'productCategoryMap', 'masterList']),
     sortedMasterList: function () {
-      let producMap = this.productMap;
+      let producMap = this.productMap
       return this.masterList ? _.sortBy(this.masterList.listItems, function (item) {
         return [producMap[item.product_id].product_category_id, producMap[item.product_id].name]
       }) : []
