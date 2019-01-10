@@ -7,7 +7,6 @@
     </header>
     <spinner/>
     <side-menu></side-menu>
-    <fly-up></fly-up>
     <div id="app-content">
     <router-view/>
     </div>
@@ -17,12 +16,11 @@
 <script>
 import {mapActions} from 'vuex'
 import sideMenu from './components/common/side-menu'
-import flyUp from './components/common/fly-up'
 import Spinner from './components/common/spinner'
 
 export default {
   name: 'App',
-  components: {Spinner, sideMenu, flyUp},
+  components: {Spinner, sideMenu},
   created: function () {
     this.showHeader = this.$route.path !== '/login'
   },

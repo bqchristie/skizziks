@@ -3,8 +3,7 @@
     <type-ahead :list-data="products" :select-item="addItem"></type-ahead>
     <div class="empty-message" v-if="masterList.listItems && masterList.listItems.length === 0">
       <img src="../assets/logo_white.png"/>
-      <h3 :on-click="huh">Add some products to the list!</h3>
-      <button :on-click="huh"></button>
+      <h3>Add some products to the list!</h3>
     </div>
     <ul>
         <li class="cat-1" v-for="item in sortedMasterList"  :key="item.id">
@@ -38,7 +37,7 @@ export default {
     this.$store.dispatch('initData')
   },
   methods: {
-    ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList','toggleFlyUp']),
+    ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList', 'toggleFlyUp']),
     addItem: function (productId) {
       this.$store.dispatch('addToMasterList', productId)
     },

@@ -24,7 +24,7 @@ const actions = {
     commit('TOGGLE_SIDE_MENU')
   },
   toggleFlyUp ({commit}) {
-    console.log('Hey now');
+    console.log('Hey now')
     commit('TOGGLE_FLY_UP')
   },
   startSpinner ({commit}) {
