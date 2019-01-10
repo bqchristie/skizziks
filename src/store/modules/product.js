@@ -56,8 +56,6 @@ const actions = {
     let userId = Vue.ls.get('user')
     let data = []
 
-    // get user then
-    // get master list
     axios.get(process.env.API_PATH + '/product')
       .then(response => {
         data.push(response.data)
@@ -76,14 +74,6 @@ const actions = {
           })
       })
   },
-  // addProduct ({commit}, product) {
-  //   axios.post(process.env.API_PATH + '/product', product).then((response) => {
-  //     commit('ADD_PRODUCT', product)
-  //   })
-  // },
-  // removeProduct ({commit}, product) {
-  //   commit('REMOVE_PRODUCT', product)
-  // },
   addToMasterList ({commit, dispatch}, id) {
     dispatch('startSpinner')
     let listItem = {list: state.masterList}

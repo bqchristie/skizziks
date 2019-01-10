@@ -39,16 +39,11 @@ export default {
   methods: {
     ...mapActions(['initData', 'addProduct', 'removeProduct', 'addToMasterList', 'toggleFlyUp']),
     addItem: function (productId) {
+      // TODO: this could be addToMasterList(productId) no?
       this.$store.dispatch('addToMasterList', productId)
     },
     removeItem: function (productId) {
       this.$store.dispatch('removeFromMasterList', productId)
-    },
-    markDone: function (id) {
-      console.log(id)
-    },
-    huh: function () {
-      console.log('huh')
     }
   },
   computed: {
