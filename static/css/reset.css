@@ -46,3 +46,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* In addition to Myer */
+
+button {
+  appearance: none;
+  background: transparent;
+  /* Other styles */
+}
