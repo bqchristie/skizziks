@@ -82,7 +82,7 @@ const actions = {
         commit('ADD_TO_MASTER_LIST', listItem)
       })
     } else {
-      let newProduct = {name: id}
+      let newProduct = {name: id, productCategory: {id: 1}}
       axios.post(process.env.API_PATH + '/product', newProduct).then((response) => {
         newProduct.id = response.data[0].insertId
         commit('ADD_PRODUCT', newProduct)
