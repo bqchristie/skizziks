@@ -85,10 +85,14 @@ const actions = {
       let newProduct = {name: id, productCategory: {id: 1}}
       axios.post(process.env.API_PATH + '/product', newProduct).then((response) => {
         newProduct.id = response.data[0].insertId
+        newProduct.product_category_id = 1
         commit('ADD_PRODUCT', newProduct)
-        listItem.product_id = newProduct.id
+        listItem.product = {id: newProduct.id}
         axios.post(process.env.API_PATH + '/list-item', listItem).then((response) => {
           listItem.id = response.data[0].insertId
+          listItem.product_id = listItem.product.id
+          listItem.list_id = listItem.list.id
+          listItem.product = {id: listItem.product.id}
           commit('ADD_TO_MASTER_LIST', listItem)
         })
       })
