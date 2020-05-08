@@ -8,6 +8,7 @@ import VueLocalStorage from 'vue-localstorage';
 
 import ListDetail from "./components/ListDetail";
 import Login from "./components/Login";
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 Vue.use(VueLocalStorage, {

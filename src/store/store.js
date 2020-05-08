@@ -4,8 +4,12 @@ import axios from 'axios';
 import _ from 'lodash';
 
 Vue.use(Vuex)
+console.log("@@@@@@@@@@@@@aa@@@@@@@@@");
+console.log(process.env);
+const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
 
 export default new Vuex.Store({
+
     state: {
         currentList: {},
         currentTask: {},
@@ -71,7 +75,7 @@ export default new Vuex.Store({
 
     actions: {
         setCurrentList({commit}, id) {
-            axios.get('http://localhost:3000/api/v1/list/' + id).then(response => {
+            axios.get(API_BASE_URL + '/api/v1/list/' + id).then(response => {
                 commit('SET_CURRENT_LIST', response.data);
             })
         },
@@ -79,19 +83,21 @@ export default new Vuex.Store({
             commit('SET_CURRENT_TASK', task);
         },
         getLists({commit}) {
-            axios.get('http://localhost:3000/api/v1/list').then(response => {
+            console.log("****************************");
+            console.log(process.env);
+            axios.get(API_BASE_URL + '/api/v1/list').then(response => {
                 commit('SET_LISTS', response.data);
             })
         },
         addList({commit}) {
             const listName = `Unititles ${this.state.lists.length + 1}`;
-            axios.post('http://localhost:3000/api/v1/list', {name: listName}).then(response => {
+            axios.post(API_BASE_URL + '/api/v1/list', {name: listName}).then(response => {
                 commit('CREATE_LIST', response.data);
             });
         },
         deleteList({commit}) {
             console.log("deleting list");
-            axios.delete('http://localhost:3000/api/v1/list/' + this.state.currentList._id).then(response => {
+            axios.delete(API_BASE_URL + '/api/v1/list/' + this.state.currentList._id).then(response => {
                 console.log(response);
                 commit('DELETE_LIST');
             });
@@ -100,7 +106,7 @@ export default new Vuex.Store({
             console.log("updating list");
             commit('UPDATE_LIST');
             const copy = Object.assign({}, this.state.currentList);
-            axios.put('http://localhost:3000/api/v1/list', copy).then(response => {
+            axios.put(API_BASE_URL + '/api/v1/list', copy).then(response => {
                 commit('UPDATE_LIST', response.data);
             });
         },
@@ -108,7 +114,7 @@ export default new Vuex.Store({
         addTask({commit}, name) {
             const copy = Object.assign({}, this.state.currentList);
             copy.tasks.push({name: name})
-            axios.put('http://localhost:3000/api/v1/list', copy).then(response => {
+            axios.put(API_BASE_URL + '/api/v1/list', copy).then(response => {
                 commit('ADD_TASK', response.data);
             });
         },
